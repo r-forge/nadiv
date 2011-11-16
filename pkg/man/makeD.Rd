@@ -23,7 +23,8 @@ There exists no convenient method of obtaining the inverse of the dominance gene
   \item{listDinv}{the three column form of the non-zero elements for the inverse of the D matrix}
 }
 \references{
-Quaas, R.L. 1995. Fx algorithms. An unpublished note
+Quaas, R.L. 1995. Fx algorithms. An unpublished note.
+
 Lynch M., & Walsh, B. 1998. Genetics and Analysis of Quantitative Traits. Sinauer, Sunderland, Massachusetts.}
 \author{\email{matthewwolak@gmail.com}
 }
