@@ -1,5 +1,5 @@
 useDynLib(nadiv, dij, make_a)
 import(Matrix)
 importFrom(kinship, kindepth)
-export(makeA, makeD, makeAA, makeDomEpi, sm2list, aiFun)
+export(makeA, makeD, makeAA, makeDomEpi, sm2list, aiFun, numPed)
 
