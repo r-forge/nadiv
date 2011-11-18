@@ -51,6 +51,7 @@ makeD<-function(pedigree, invertD=TRUE){
     D <- as(D, "dgCMatrix")
  return(list(A=A, D=D, Dinv=Dinv, listDinv=listDinv))
   } else{
+    D <- as(D, "dgCMatrix")
     return(list(A=A, D=D))
     } 
 }
