@@ -27,10 +27,12 @@ The value, \code{listDsim} will list both the approximate values (returned from 
 
 \value{
   \item{A}{the A matrix in sparse matrix form}
-  \item{D}{the D matrix in sparse matrix form}
-  \item{Dinv}{the inverse of the D matrix in sparse matrix form}
-  \item{listDinv}{the three column form of the non-zero elements for the inverse of the D matrix}
+  \item{D}{the approximate D matrix in sparse matrix form}
+  \item{logDetD}{the log determinant of the approximate D matrix}
+  \item{Dinv}{the inverse of the approximate D matrix in sparse matrix form}
+  \item{listDinv}{the three column form of the non-zero elements for the inverse of the approximate D matrix}
   \item{Dsim}{the simulated D matrix in sparse matrix form}
+  \item{logDetDsim}{the log determinant of the simulated D matrix}
   \item{Dsiminv}{the inverse of the simulated D matrix in sparse matrix form}
   \item{listDsim}{the three column form of the non-zero and non-self elements for the simulated D matrix}
   \item{listDsiminv}{the three column form of the non-zero elements for the inverse of the simulated D matrix}

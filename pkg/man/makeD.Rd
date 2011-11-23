@@ -19,6 +19,7 @@ There exists no convenient method of obtaining the inverse of the dominance gene
 \value{
   \item{A}{the A matrix in sparse matrix form}
   \item{D}{the D matrix in sparse matrix form}
+  \item{logDet}{the log determinant of the D matrix}
   \item{Dinv}{the inverse of the D matrix in sparse matrix form}
   \item{listDinv}{the three column form of the non-zero elements for the inverse of the D matrix}
 }

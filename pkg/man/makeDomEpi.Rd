@@ -26,8 +26,11 @@ Both the AD and DD matrix are computed from the Hadamard product of the respecti
 \value{All of the following will be returned.  However, the values of the \code{output} and \code{Dinverse} options passed to the function will determine which of the following are not NULL objects within the list:
 
   \item{D}{the D matrix in sparse matrix form}
+  \item(logDetD}{the log determinant of the D matrix}
   \item{AD}{the AD matrix in sparse matrix form}
+  \item{logDetAD}{the log determinant of the AD matrix}
   \item{DD}{the DD matrix in sparse matrix form}
+  \item{logDetDD}{the log determinant of the DD matrix}
   \item{Dinv}{the inverse of the D matrix in sparse matrix form}
   \item{ADinv}{the inverse of the AD matrix in sparse matrix form}
   \item{DDinv}{the inverse of the DD matrix in sparse matrix form}
