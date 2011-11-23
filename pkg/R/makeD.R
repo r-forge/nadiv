@@ -50,7 +50,7 @@ makeD<-function(pedigree, invertD=TRUE){
     print("done inverting D")
     listDinv<-sm2list(Dinv, rownames=pedigree[,1], colnames=c("row", "column", "Dinverse"))
     D <- as(D, "dgCMatrix")
- return(list(A=A, D=D, Dinv=Dinv, listDinv=listDinv, logDet = logDet))
+ return(list(A=A, D=D, logDet = logDet, Dinv=Dinv, listDinv=listDinv))
   } else{
     D <- as(D, "dgCMatrix")
     return(list(A=A, D=D, logDet = logDet))

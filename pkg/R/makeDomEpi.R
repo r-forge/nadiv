@@ -2,7 +2,6 @@ makeDomEpi <- function(pedigree, output = c("AD", "DD", "both"), Dinverse = FALS
 {
   type <- match.arg(output)
   Dout <- makeD(pedigree, invertD=Dinverse)
-  logDetD <- Dout$logDet
 
   if(type == "AD"){
     AD <- Dout$A * Dout$D
@@ -40,7 +39,7 @@ makeDomEpi <- function(pedigree, output = c("AD", "DD", "both"), Dinverse = FALS
     listDDinv<-sm2list(DDinv.tmp, rownames=pedigree[,1], colnames=c("row", "column", "DDinverse"))
     DDinv <- as(DDinv.tmp, "dgCMatrix")
     }
-return(list(D=Dout$D, logDetD = logDetD, AD=AD, logDetAD = logDetAD, DD=DD, logDetDD = logDetDD, Dinv=Dout$Dinv, ADinv=ADinv, DDinv=DDinv, listDinv=Dout$listDinv, listADinv=listADinv, listDDinv=listDDinv))
+return(list(D=Dout$D, logDetD = Dout$logDet, AD=AD, logDetAD = logDetAD, DD=DD, logDetDD = logDetDD, Dinv=Dout$Dinv, ADinv=ADinv, DDinv=DDinv, listDinv=Dout$listDinv, listADinv=listADinv, listDDinv=listDDinv))
 
 }
 

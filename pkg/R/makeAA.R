@@ -7,6 +7,6 @@ makeAA<-function(pedigree)
   AAinv <- solve(AA)
   listAAinv<-sm2list(AAinv, rownames=pedigree[,1], colnames=c("row", "column", "AAinverse"))
   AA <- as(AA, "dgCMatrix")
-return(list(AA=AA, AAinv=AAinv, listAAinv=listAAinv, logDet = logDet))    
+return(list(AA=AA, logDet = logDet, AAinv=AAinv, listAAinv=listAAinv))    
 }
 
