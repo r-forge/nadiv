@@ -29,6 +29,11 @@ Lynch M., & Walsh, B. 1998. Genetics and Analysis of Quantitative Traits. Sinaue
 \author{\email{matthewwolak@gmail.com}
 }
 
+\seealso{
+ \code{\link{makeDsim}} 
+}
+
+
 \examples{
 data(Mrode9)
 Mrode9 <- Mrode9
