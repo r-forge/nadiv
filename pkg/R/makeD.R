@@ -39,7 +39,8 @@ makeD<-function(pedigree, invertD=TRUE){
   D@i<-as.integer(D.row[order.index]-1)
   D@p<-as.integer(c(match(1:n_ped, D.col[order.index]), length(order.index)+1)-1)
   D@x<-D.x[order.index]
-
+  
+  logDet <- determinant(D, logarithm = TRUE)$modulus[1]
   A<-as(2*A, "dgCMatrix")
  
   if(invertD){
@@ -49,10 +50,10 @@ makeD<-function(pedigree, invertD=TRUE){
     print("done inverting D")
     listDinv<-sm2list(Dinv, rownames=pedigree[,1], colnames=c("row", "column", "Dinverse"))
     D <- as(D, "dgCMatrix")
- return(list(A=A, D=D, Dinv=Dinv, listDinv=listDinv))
+ return(list(A=A, D=D, Dinv=Dinv, listDinv=listDinv, logDet = logDet))
   } else{
     D <- as(D, "dgCMatrix")
-    return(list(A=A, D=D))
+    return(list(A=A, D=D, logDet = logDet))
     } 
 }
 
