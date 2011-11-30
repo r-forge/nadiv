@@ -5,7 +5,7 @@ Version: 2.2
 Date: 2011-11-03
 Author: Matthew Wolak
 Maintainer: Matthew Wolak <matthewwolak@gmail.com>
-Depends: Matrix, kinship
+Depends: Matrix, kinship2
 Description: Constructs non-additive genetic relationship matrices from a pedigree.  These and their inverses can be passed to a linear mixed effect model, known as the 'animal model'.
 License: GPL (>=2)
 LazyLoad: yes
