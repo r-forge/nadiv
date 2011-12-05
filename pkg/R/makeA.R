@@ -3,7 +3,7 @@ makeA<-function (pedigree)
   numeric.pedigree <- numPed(pedigree) 
   N<-length(numeric.pedigree[,1])
   ped<-t(numeric.pedigree)
-  ped2<-rbind(ped, kindepth(numeric.pedigree[,1], numeric.pedigree[,3], numeric.pedigree[,2]))
+  ped2<-rbind(ped, genAssign(numeric.pedigree))
   nonzero<-ped2[1:3, ped2[4,]>0]
   offset<-nonzero[1,1]-1
   increment<-round(((ceiling(dim(nonzero)[2]*0.05)-(dim(nonzero)[2]*0.05))*20)+0.1)
