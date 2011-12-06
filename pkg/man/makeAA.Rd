@@ -8,16 +8,16 @@ Given a pedigree, the matrix of additive by additive genetic relatedness (AA) am
 makeAA(pedigree)
 }
 \arguments{
-  \item{pedigree}{
+  \item{pedigree }{
 A pedigree where the columns are ordered ID, Dam, Sire}
 }
 \details{
 The function first estimates the A matrix using \code{\link{makeA}}, then it calculates the Hadamard (element-wise) product of the A matrix with itself (A # A).}
 \value{
-  \item{AA}{the AA matrix in sparse matrix form}
-  \item{logDet}{the log determinant of the AA matrix}
-  \item{AAinv}{the inverse of the AA matrix in sparse matrix form}
-  \item{listAAinv}{the three column form of the non-zero elements for the inverse of the AA matrix}
+  \item{AA }{the AA matrix in sparse matrix form}
+  \item{logDet }{the log determinant of the AA matrix}
+  \item{AAinv }{the inverse of the AA matrix in sparse matrix form}
+  \item{listAAinv }{the three column form of the non-zero elements for the inverse of the AA matrix}
 }
 
 \author{\email{matthewwolak@gmail.com}

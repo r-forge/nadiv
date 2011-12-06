@@ -8,11 +8,11 @@ determines if two individuals are IBD, given their genotypes}
 IBD(pair, genotypes, n)
 }
 \arguments{
-  \item{pair}{
+  \item{pair }{
 which two individuals}
-  \item{genotypes}{
+  \item{genotypes }{
 each individuals' genotype}
-  \item{n}{
+  \item{n }{
 number of individuals in the population to index the second haploid complement of genes}
 }
 \author{\email{matthewwolak@gmail.com}

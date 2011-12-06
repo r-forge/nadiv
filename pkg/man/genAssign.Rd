@@ -9,7 +9,7 @@ Given a pedigree, the function assigns the generation number each individual bel
 genAssign(pedigree)
 }
 \arguments{
-  \item{pedigree}{A pedigree with columns organized: ID, Dam, Sire
+  \item{pedigree }{A pedigree with columns organized: ID, Dam, Sire
 }
 }
 \details{

@@ -8,9 +8,9 @@ The standard error for coefficients of fraternity that are derived from simulati
 SEfun(coef.frat, N)
 }
 \arguments{
-  \item{coef.frat}{
+  \item{coef.frat }{
 the simulated coefficient of fraternity}
-  \item{N}{
+  \item{N }{
 the number of times the simulation was conducted}
 }
 \references{

@@ -10,9 +10,9 @@ An example pedigree
 \format{
   A data frame with 6 observations on the following 3 variables.
   \describe{
-    \item{\code{id}}{a numeric vector}
-    \item{\code{dam}}{a numeric vector}
-    \item{\code{sire}}{a numeric vector}
+    \item{\code{id} }{a numeric vector}
+    \item{\code{dam} }{a numeric vector}
+    \item{\code{sire} }{a numeric vector}
   }
 }
 \source{Mrode, R.A. 2005. Linear Models for the Prediction of Animal Breeding Values, 2nd ed.  Cambridge, MA: CABI Publishing.

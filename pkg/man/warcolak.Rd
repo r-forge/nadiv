@@ -9,10 +9,10 @@ An example pedigree with phenotypic data constructed from simulated additive, do
 \format{
   A data frame with 480 observations on the following 4 variables.
   \describe{
-    \item{\code{ID}}{a factor specifying 480 unique individual IDs}
-    \item{\code{Dam}}{a factor specifying the unique ID for each of 3 dams per sire}
-    \item{\code{Sire}}{a factor specifying the unique ID for all 30 sires}
-    \item{\code{phenotype}}{a numeric vector of phenotypic values}
+    \item{\code{ID }}{a factor specifying 480 unique individual IDs}
+    \item{\code{Dam }}{a factor specifying the unique ID for each of 3 dams per sire}
+    \item{\code{Sire }}{a factor specifying the unique ID for all 30 sires}
+    \item{\code{phenotype} }{a numeric vector of phenotypic values}
   }
 }
 \details{

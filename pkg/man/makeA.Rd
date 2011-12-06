@@ -8,7 +8,7 @@
 makeA(pedigree)
 }
 \arguments{
-  \item{pedigree}{
+  \item{pedigree }{
 A pedigree where the columns are ordered ID, Dam, Sire}
 }
 \details{

@@ -8,13 +8,13 @@
 sm2list(A = NULL, rownames = NULL, colnames = c("row", "column", "A"))
 }
 \arguments{
-  \item{A}{
+  \item{A }{
 a sparse matrix
 }
-  \item{rownames}{
+  \item{rownames }{
 a list of rownames from the 'A' matrix.
 }
-  \item{colnames}{
+  \item{colnames }{
 the columns will be labelled however they are entered in this character vector}
 }
 \details{

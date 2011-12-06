@@ -8,9 +8,9 @@ This function returns the sampling covariances, variances, and correlations of t
 aiFun(model, Dimnames = NULL)
 }
 \arguments{
-  \item{model}{
+  \item{model }{
 A model object returned by a call to the \code{asreml} function.}
-  \item{Dimnames}{
+  \item{Dimnames }{
 A vector of characters if names are desired for the (co)variance/correlation matrix.}
 }
 \details{

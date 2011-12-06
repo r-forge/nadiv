@@ -8,11 +8,11 @@ applies \code{IBD} over a set of pairs}
 IBD2(pairs, genos, n)
 }
 \arguments{
-  \item{pairs}{
+  \item{pairs }{
 see \code{IBD}}
-  \item{genos}{
+  \item{genos }{
 see \code{IBD}}
-  \item{n}{
+  \item{n }{
 see \code{IBD}}
 }
 \author{\email{matthewwolak@gmail.com}
