@@ -9,3 +9,4 @@ Depends: Matrix
 Description: Constructs non-additive genetic relationship matrices from a pedigree.  These and their inverses can be passed to a linear mixed effect model, known as the 'animal model'.
 License: GPL (>=2)
 LazyLoad: yes
+LazyData: yes
