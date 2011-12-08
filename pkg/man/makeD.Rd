@@ -36,8 +36,6 @@ Lynch M., & Walsh, B. 1998. Genetics and Analysis of Quantitative Traits. Sinaue
 
 
 \examples{
-data(Mrode9)
-Mrode9 <- Mrode9
-DinvMat <- makeD(Mrode9)$Dinv
+  DinvMat <- makeD(Mrode9)$Dinv
 }
 

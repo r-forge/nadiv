@@ -53,8 +53,6 @@ This simulation can take a long time for large values of \code{N}.  If unsure, i
 
 
 \examples{
-data(Mrode9)
-Mrode9 <- Mrode9
-simDinvMat <- makeDsim(Mrode9, N = 1000, invertD = FALSE, calcSE = TRUE)$listDsim
+  simDinvMat <- makeDsim(Mrode9, N = 1000, invertD = FALSE, calcSE = TRUE)$listDsim
 }
 

@@ -27,7 +27,6 @@ The vector of \code{Dimnames} should match the same order of variance components
 
 \examples{
   \dontrun{
-    data(warcolak)
     library(asreml)
     ginvA <- asreml.Ainverse(warcolak)$ginv
     ginvD <- makeD(warcolak[,1:3])$listDinv

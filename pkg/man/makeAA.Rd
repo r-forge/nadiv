@@ -29,8 +29,6 @@ The function first estimates the A matrix using \code{\link{makeA}}, then it cal
 }
 
 \examples{
-data(Mrode2)
-Mrode2 <- Mrode2
-AAoutput <- makeAA(Mrode2)
+  AAoutput <- makeAA(Mrode2)
 }
 

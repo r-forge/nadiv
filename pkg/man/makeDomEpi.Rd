@@ -47,15 +47,10 @@ Both the AD and DD matrix are computed from the Hadamard product of the respecti
 
 
 \examples{
-  \dontrun{
-
-	data(Mrode9)
-	Mrode9 <- Mrode9
-	Boutput <- makeDomEpi(Mrode9, output = "b", Dinverse = FALSE)
-	str(Boutput)
+  Boutput <- makeDomEpi(Mrode9, output = "b", Dinverse = FALSE)
+  str(Boutput)
 	
-	DADoutput <- makeDomEpi(Mrode9, output = "AD", Dinverse = TRUE)
-	str(DADoutput)
-    }
+  DADoutput <- makeDomEpi(Mrode9, output = "AD", Dinverse = TRUE)
+  str(DADoutput)
 }
 

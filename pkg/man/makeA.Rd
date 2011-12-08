@@ -22,8 +22,6 @@ Used as a support function to \code{\link{makeD}}.  Uses the algorithm of Meuwis
 \seealso{\code{\link{makeD}}}
 
 \examples{
-data(Mrode2)
-Mrode2<-Mrode2
-makeA(Mrode2)
+ makeA(Mrode2)
 }
 
