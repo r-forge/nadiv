@@ -1,6 +1,6 @@
 makeD<-function(pedigree, invertD=TRUE){
 #  Adense<-makeA(pedigree)
-  Adense <- zapsmall(solve(inverseA(pedigree)$Aiv), 10)
+  Adense <- zapsmall(solve(inverseA(pedigree)$Ainv), 10)
   A<-Matrix(Adense, sparse=TRUE)
   listA<-sm2list(A, rownames=pedigree[,1], colnames=c("row", "column", "A"))
 
