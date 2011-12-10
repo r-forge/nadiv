@@ -1,7 +1,7 @@
 makeAA<-function(pedigree)
 {
   Adense<-makeA(pedigree)
-  A<-2*Matrix(Adense, sparse=TRUE)
+  A<-Matrix(Adense, sparse=TRUE)
   AA <- A*A
   logDet <- determinant(AA, logarithm = TRUE)$modulus[1]
   AAinv <- solve(AA)
