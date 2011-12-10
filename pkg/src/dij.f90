@@ -115,7 +115,7 @@ subroutine dij(iparents, iparents_r, Adense, dim_a, answer)
    rmfp=(/rmfp(1:19), Adense(iparents(1,i+19), iparents(4,i+19))/)
    rfmp=(/rfmp(1:19), Adense(iparents(2,i+19), iparents(3,i+19))/)
 
-   d=((rmmp*rffp) + (rmfp*rfmp))
+   d=((rmmp*rffp) + (rmfp*rfmp)) * 0.25
    answer=(/answer(1:i-1), d/)
  end do
 end subroutine dij
