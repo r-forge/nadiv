@@ -2,7 +2,7 @@
 \alias{nadiv-package}
 \alias{nadiv}
 \docType{package}
-\title{Creates non-additive relationship matrices and their inverses
+\title{Functions to create non-additive relationship matrices and their inverses
 }
 \description{From a supplied pedigree, creates the matrices of dominance and epistatic relatedness.  Also, the inverses of these matrices are produced, which is what is needed to estimate these non-additive variance components in a linear mixed effects model (i.e., the 'animal model').
 }
@@ -10,8 +10,8 @@
 \tabular{ll}{
 Package: \tab nadiv\cr
 Type: \tab Package\cr
-Version: \tab 2.5\cr
-Date: \tab 2011-12-05\cr
+Version: \tab 2.6\cr
+Date: \tab 2011-12-11\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }

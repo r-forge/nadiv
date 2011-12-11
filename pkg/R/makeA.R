@@ -1,6 +1,7 @@
 makeA<-function (pedigree) 
 {
-A <- zapsmall(solve(inverseA(pedigree)$Ainv), 10)
+Asparse <- zapsmall(solve(inverseA(pedigree)$Ainv), 10)
+A <- as(Asparse, "matrix")
 A
 }
 

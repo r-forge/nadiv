@@ -2,7 +2,7 @@
 \alias{makeA}
 \title{Creates the additive genetic relationship matrix
 }
-\description{Using a pedigree, this returns the kinship matrix.  Note, elements are the coefficient of coancestry, not two times this value.  The latter being what is typically used when conducting genetic analysis using the 'animal model'.
+\description{Using a pedigree, this returns the additive relationship matrix.
 }
 \usage{
 makeA(pedigree)
