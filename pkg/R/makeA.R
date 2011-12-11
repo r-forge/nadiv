@@ -7,7 +7,7 @@ makeA<-function (pedigree)
   F <- rep(0, N)
   Dii <- rep(0, N)
 
-  out <- .Fortran(AML, ped_n=as.integer(N),ped=as.integer(ped),T=as.single(T),F=as.single(F),Dii=as.single(Dii),Aout=as.single(T))
+  out <- .Fortran(makeA_ML, ped_n=as.integer(N),ped=as.integer(ped),T=as.single(T),F=as.single(F),Dii=as.single(Dii),Aout=as.single(T))
 
 
   T.i <- as.integer(rep(1:N, N)[which(out$T > 0)]-1)
