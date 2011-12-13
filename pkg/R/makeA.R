@@ -21,9 +21,9 @@ makeA<-function (pedigree)
 
   D <- Diagonal(N, sqrt(out$Dii))
   L <- T%*%D
-  Asparse <- L%*%t(L)
-  A <- as(Asparse, "matrix")
+  Asparse <- as(L%*%t(L), "dgCMatrix")
+  Adense <- as(Asparse, "matrix")
   
-A
+return(list(Asparse = Asparse, Adense = Adense))
 }
 

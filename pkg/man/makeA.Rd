@@ -13,7 +13,11 @@ A pedigree where the columns are ordered ID, Dam, Sire}
 }
 \details{
 Used as a support function to \code{\link{makeD}}.  Uses the algorithm of Meuwissen and Luo (1992)}
-\value{Returns A, or the numerator relationship matrix, in sparse matrix form.}
+\value{Returns A, or the numerator relationship matrix, in sparse and dense matrix form.
+
+  \item{Asparse }{A in sparse matrix form}
+  \item{Adense }{A in dense matrix form}
+}
 
 \references{Meuwissen, T.H.E. & Luo, Z. 1992. Computing inbreeding coefficients in large populations. Genetics, Selection, Evolution 24, 305-313.}
 
