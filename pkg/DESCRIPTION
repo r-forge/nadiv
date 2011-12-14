@@ -1,8 +1,8 @@
 Package: nadiv
 Type: Package
 Title: Functions to construct non-additive genetic relatedness matrices
-Version: 2.6
-Date: 2011-12-11
+Version: 2.7
+Date: 2011-12-14
 Author: Matthew Wolak
 Maintainer: Matthew Wolak <matthewwolak@gmail.com>
 Depends: Matrix, MCMCglmm
