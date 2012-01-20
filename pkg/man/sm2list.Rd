@@ -22,5 +22,3 @@ The sparse matrix and three column format must fit CERTAIN assumptions about row
 \value{
 returns the list form of the sparse matrix as a \code{data.frame}}
 
-}
-

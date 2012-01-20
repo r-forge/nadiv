@@ -18,4 +18,3 @@ Individuals must appear in the ID column in rows preceeding where they appear in
 
 \value{
 The pedigree, where individuals are now numbered from 1 to n and unknown parents are assigned a value of '-998'.}
-}
