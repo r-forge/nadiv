@@ -12,6 +12,8 @@ makeA(pedigree)
 A pedigree where the columns are ordered ID, Dam, Sire}
 }
 \details{
+Missing parents (e.g., base population) should be denoted by either 'NA' or '0'.
+
 Uses the algorithm of Meuwissen and Luo (1992).  Also, used as a support function to \code{\link{makeD}}.}
 
 \value{Returns A, or the numerator relationship matrix, in sparse and dense matrix form.

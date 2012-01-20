@@ -1,6 +1,9 @@
 numPed<-function(pedigree)
 {
-      if (all(is.na(pedigree[, 2])) & all(is.na(pedigree[, 
+       pedigree[which(pedigree[, 2] == 0), 2] <- NA
+       pedigree[which(pedigree[, 3] == 0), 3] <- NA
+
+       if (all(is.na(pedigree[, 2])) & all(is.na(pedigree[, 
             3]))) {
             stop("All dams and sires are missing")
         }
