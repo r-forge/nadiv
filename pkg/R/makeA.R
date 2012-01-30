@@ -20,7 +20,7 @@ makeA<-function (pedigree)
   T@j <- T.j
 
   D <- Diagonal(N, sqrt(out$Dii))
-  L <- T%*%D
+  L <- suppressMessages(T%*%D)
   Asparse <- as(L%*%t(L), "dgCMatrix")
   Adense <- as(Asparse, "matrix")
   
