@@ -6,8 +6,8 @@ makeD <- function(pedigree, invertD=TRUE)
   listA <- sm2list(A, rownames=pedigree[,1], colnames=c("row", "column", "A"))
 
   numeric.pedigree <- numPed(pedigree)
-  noself.listA <- listA[!listA[,1]==listA[,2],]
-  exclude <- which(numeric.pedigree[,2]==-998 | numeric.pedigree[,3]==-998)
+  noself.listA <- listA[!listA[, 1] ==listA[, 2], ]
+  exclude <- which(numeric.pedigree[, 2] == -998 | numeric.pedigree[, 3]==-998)
   tmp.listA <- noself.listA[!noself.listA[,1] %in% exclude & !noself.listA[,2] %in% exclude,]
 
   iparents <- matrix(c(numeric.pedigree[tmp.listA[,1], 2],numeric.pedigree[tmp.listA[,1], 3],numeric.pedigree[tmp.listA[,2], 2],numeric.pedigree[tmp.listA[,2], 3]), nrow=4, ncol=dim(tmp.listA)[1], byrow=TRUE)
