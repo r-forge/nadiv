@@ -23,4 +23,4 @@
 
 \seealso{\code{\link{proLik}}}
 
-\examples{#See examples in \code{\link{proLik}}}
+\examples{##See examples in \code{\link{proLik}}}
