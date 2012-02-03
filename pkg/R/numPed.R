@@ -1,3 +1,9 @@
+################################################
+#Adapted from part of the 'inverseA' function
+# written by Jarrod Hadfield
+#in the 'MCMCglmm' package
+################################################
+
 numPed<-function(pedigree)
 {
       

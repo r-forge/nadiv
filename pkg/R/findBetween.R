@@ -18,7 +18,7 @@ findBetween <- function(x, output, side = "L", threshb)
   interp <- output$var.estimates[lo] + ((x - output$lambdas[lo]) / slope)
   diff.hi <- abs(output$var.estimates[hi] - interp)
   diff.lo <- abs(output$var.estimates[lo] - interp) 
-  if(diff.hi <= threshb | diff.lo <= threshb){
+  if(diff.hi <= threshb & diff.lo <= threshb){
     return(list(more = FALSE, estimate = interp))
     } else{
         hilo <- c(output$var.estimates[hi], output$var.estimates[lo])

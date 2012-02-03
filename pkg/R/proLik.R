@@ -1,4 +1,4 @@
-proLik <- function(full.model, component, negative = FALSE, nsample.units = 4, nse = 2, alpha = 0.05, threshold = 0.025)
+proLik <- function(full.model, component, negative = FALSE, nsample.units = 4, nse = 2, alpha = 0.05, threshold = 0.05)
 {
 
   df.in <- 1
@@ -24,7 +24,7 @@ proLik <- function(full.model, component, negative = FALSE, nsample.units = 4, n
 
   profile <- list(lambdas = vapply(gamma.vec, FUN = constrainFun, FUN.VALUE = vector("numeric", length = 1), full = full.model, fm2 = full.mod2, comp = component), var.estimates = sample.vec)
 
-  chi.val <- -0.5 * qchisq(alpha, df = df.in, log = FALSE, lower.tail = FALSE)
+  chi.val <- -0.5 * qchisq(alpha, df = df.in, lower.tail = FALSE)
   leng.L <- length(bit1)
   leng.U <- length(bit2)
 
@@ -131,6 +131,6 @@ proLik <- function(full.model, component, negative = FALSE, nsample.units = 4, n
     }
 
 
-return(list(lambdas = clambdas, var.estimates = cvar.estimates, UCL = Upper.limit, LCL = Lower.limit))
+return(list(lambdas = clambdas, var.estimates = cvar.estimates, UCL = Upper.limit, LCL = Lower.limit, component = component))
 }
 

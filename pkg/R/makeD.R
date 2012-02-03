@@ -20,13 +20,13 @@ makeD <- function(pedigree, invertD=TRUE)
   iparents_r <- dim(iparents)[2]
   dim_a <- dim(Adense)[1]
   answer <- as.single(rep(0,iparents_r))
-  print("starting to make D")
+  cat(paste("starting to make D..."))
   For_out <- .Fortran(dij, iparents=as.integer(iparents), iparents_r=as.integer(iparents_r), Adense=as.single(Adense), dim_a=as.integer(dim_a), answer=as.single(answer))$answer
 
   if(!increment==0){
     Dijs <- For_out[-c((length(For_out)-increment+1):length(For_out))]
     } else{Dijs <- For_out}
-  print("D made")
+  cat(paste(".done", "\n"))
 	
   n_ped <- dim(numeric.pedigree)[1]
   tmp.listD <- data.frame(Row=tmp.listA[,1], Column=tmp.listA[,2], D=Dijs)
@@ -46,10 +46,10 @@ makeD <- function(pedigree, invertD=TRUE)
   A <- as(A, "dgCMatrix")
  
   if(invertD){
-    print("starting to invert D")
+    cat(paste("inverting D..."))
     Dinv <- solve(D)
     Dinv@Dimnames <- list(pedigree[,1], NULL)
-    print("done inverting D")
+    cat(paste("done.", "\n"))
     listDinv <- sm2list(Dinv, rownames=pedigree[,1], colnames=c("row", "column", "Dinverse"))
     D <- as(D, "dgCMatrix")
  return(list(A=A, D=D, logDet = logDet, Dinv=Dinv, listDinv=listDinv))

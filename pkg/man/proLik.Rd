@@ -1,228 +1,74 @@
 \name{proLik}
 \alias{proLik}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
-\usage{
-proLik(full.model, component, negative = FALSE, nsample.units = 4, nse = 2, alpha = 0.05, threshold = 0.025)
-}
-%- maybe also 'usage' for other objects documented here.
-\arguments{
-  \item{full.model}{
-%%     ~~Describe \code{full.model} here~~
-}
-  \item{component}{
-%%     ~~Describe \code{component} here~~
-}
-  \item{negative}{
-%%     ~~Describe \code{negative} here~~
-}
-  \item{nsample.units}{
-%%     ~~Describe \code{nsample.units} here~~
-}
-  \item{nse}{
-%%     ~~Describe \code{nse} here~~
-}
-  \item{alpha}{
-%%     ~~Describe \code{alpha} here~~
-}
-  \item{threshold}{
-%%     ~~Describe \code{threshold} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Estimates the profile likelihood of a random effect
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\description{
+When a mixed model is run in ASReml-R, this function can estimate the profile likelihood of variance components from the output.  
+}
+
+\usage{
+proLik(full.model, component, negative = FALSE, nsample.units = 4, nse = 2, alpha = 0.05, threshold = 0.05)
+}
+
+\arguments{
+  \item{full.model }{An \code{asreml} model object}
+  \item{component }{A character vector indicating for which variance component the profile likelihood will be constructed.  Must be an object in \code{full.model$gammas}.}
+  \item{negative }{Logical indicating whether or not the \code{component} can take on a negative value (i.e., a covariance)}
+  \item{nsample.units }{Number of sample units to be used in constructing the profile likelihood}
+  \item{nse }{Number of standard errors on either side of the estimate, over which the profile likelihood should be constructed}
+  \item{alpha }{The critical value for determining the Confidence Interval}
+  \item{threshold }{Acceptable distance, between actual sample values and interpolated values, for determining the upper and lower limits of the Confidence Interval.  Actual samples will be no more than this distance from the true value of the estimate}
+}
+
+
+\details{
+For the \code{negative} argument, this should be used if the profile likelihood of a covariance component is to be constructed.
+
+The function uses a grid search to obtain the approximate confidence limits.  Therefore, \code{nsample.units} should be carefully thought about beforehand when running the function.  Increasing this value will ensure a smoother surface, but at cost to time.  The function weights this quantity to ensure more samples for regions of the profile likelihood greater than the estimate.  The lower bound of the sampling interval to the estimate is made up of 2 times \code{nsample.units}, whereas the sampling interval from the estimate to the upper bound is 3 times \code{nsample.units}.  
+
+Similarly for \code{nse}, the function will include twice as many standard errors from the estimate to the upper bound than it does from the estimate to the lower bound.  If \code{negative} is FALSE, and the lower bound of the sampling interval extends beyond zero, this will instead be set to 0.
+}
+
+
+\value{
+  \item{lambdas }{negative log Likelihood ratio test statistic.  Estimated from the log Likelihood of the \code{full.model} and the log Likelihood of the model with the \code{component} constrained to a value in the sampling interval}
+  \item{var.estimates }{value along the sampling interval for which the \code{component} was constrained}
+  \item{UCL }{approximate Upper Confidence Limit}
+  \item{LCL }{approximate Lower Confidence Limit}
+  \item{component }{the component for which the profile likelihood surface has been constructed}
+}
+
+\author{\email{matthewwolak@gmail.com}}
+
+\section{Warning }{
+May be unfeasible to estimate profile likelihoods for complex models with many variance components
+}
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{aiFun}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (full.model, component, negative = FALSE, nsample.units = 4, 
-    nse = 2, alpha = 0.05, threshold = 0.025) 
-{
-    df.in <- 1
-    bound.check <- summary(full.model)$varcomp$constraint
-    if (any(bound.check == "Boundary")) {
-        warning("Boundary parameter: confidence interval estimated with a mix of Chi-squared distributions (df = 0.5)")
-        df.in <- 0.5
-    }
-    gamma.ind <- which(names(full.model$gammas) == component)
-    estimate <- summary(full.model)$varcomp$component[gamma.ind]
-    thresh <- abs(estimate * threshold)
-    std.err <- summary(full.model)$varcomp$std.error[gamma.ind]
-    low.limit <- (estimate - std.err * nse)
-    if (estimate > 0 & low.limit < 0 & negative == FALSE) 
-        low.limit <- 0
-    bit1 <- seq(low.limit, estimate, length = nsample.units * 
-        2)
-    bit2 <- seq(estimate, (estimate + std.err * (nse * 2)), length = (nsample.units * 
-        3) + 1)
-    sample.vec <- c(bit1, bit2)
-    Vr.est <- full.model$sigma2
-    gamma.vec <- sample.vec/Vr.est
-    full.mod2 <- update.asreml(object = full.model, start.values = TRUE)$gammas.table
-    profile <- list(lambdas = vapply(gamma.vec, FUN = constrainFun, 
-        FUN.VALUE = vector("numeric", length = 1), full = full.model, 
-        fm2 = full.mod2, comp = component), var.estimates = sample.vec)
-    chi.val <- -0.5 * qchisq(alpha, df = df.in, log = FALSE, 
-        lower.tail = FALSE)
-    leng.L <- length(bit1)
-    leng.U <- length(bit2)
-    pindex <- which(profile$lambdas == -998)
-    pprob <- FALSE
-    if (length(pindex) > 0) {
-        pprob <- TRUE
-        Lpindex <- which(pindex <= leng.L)
-        Upindex <- which(pindex > leng.U)
-        leng.L <- leng.L - length(Lpindex)
-        leng.U <- leng.U - length(Upindex)
-        ptmp <- sapply(profile, "[", -pindex)
-        profile <- list(lambdas = ptmp[, 1], var.estimates = ptmp[, 
-            2])
-    }
-    if (profile$lambdas[leng.L + leng.U] > chi.val) {
-        if (pprob) 
-            warning("Some parameter values attempted did not converge: Upper confidence limit may not be estimable")
-        else warning(paste(1 - alpha, "\% Upper confidence limit extends beyond the current profile likelihood: consider increasing value of 'nse'", 
-            sep = ""))
-        Upper.limit <- NULL
-    }
-    else {
-        Uindex <- c((leng.L + 1):(leng.L + leng.U))
-        Uprofile <- lapply(profile, "[", i = Uindex)
-        UCI <- findBetween(chi.val, Uprofile, side = "U", threshb = thresh)
-        if (UCI$more) {
-            UCI.tmp <- list(more = TRUE, hilo = NULL)
-            Uprof.tmp <- list(lambdas = Uprofile$lambdas[UCI$hilo], 
-                var.estimates = Uprofile$var.estimates[UCI$hilo])
-            while (UCI.tmp$more) {
-                tmp.sample.vec <- seq(Uprof.tmp$var.estimates[1], 
-                  Uprof.tmp$var.estimates[2], length = 8)
-                tmp.gamma.vec <- tmp.sample.vec/Vr.est
-                tmp.lambdas <- vapply(tmp.gamma.vec, FUN = constrainFun, 
-                  FUN.VALUE = vector("numeric", length = 1), 
-                  full = full.model, fm2 = full.mod2, comp = component)
-                UCI.tmp <- findBetween(x = chi.val, output = list(lambdas = tmp.lambdas, 
-                  var.estimates = tmp.sample.vec), side = "U", 
-                  threshb = thresh)
-                Uprof.leng <- length(Uprofile$lambdas)
-                Uprofile$lambdas <- c(Uprofile$lambdas, tmp.lambdas)
-                Uprofile$var.estimates <- c(Uprofile$var.estimates, 
-                  tmp.sample.vec)
-                if (UCI.tmp$more) {
-                  Uprof.tmp <- list(lambdas = Uprofile$lambdas[Uprof.leng + 
-                    UCI.tmp$hilo], var.estimates = Uprofile$var.estimates[Uprof.leng + 
-                    UCI.tmp$hilo])
-                }
-                else break
-            }
-            Upper.limit <- UCI.tmp$estimate
-            Uprofile$lambdas <- sort(Uprofile$lambdas, decreasing = TRUE)
-            Uprofile$var.estimates <- sort(Uprofile$var.estimates, 
-                decreasing = FALSE)
-        }
-        else Upper.limit <- UCI$estimate
-    }
-    if (profile$lambdas[1] > chi.val) {
-        if (pprob) 
-            warning("Some parameter values attempted did not converge: Lower confidence limit may not be estimable")
-        else warning(paste(1 - alpha, "\% Lower confidence limit extends beyond the current profile likelihood: consider increasing value of 'nse'", 
-            sep = ""))
-        Lower.limit <- NULL
-    }
-    else {
-        Lindex <- c(1:(leng.L))
-        Lprofile <- lapply(profile, "[", i = Lindex)
-        LCI <- findBetween(chi.val, Lprofile, side = "L", threshb = thresh)
-        if (LCI$more) {
-            LCI.tmp <- list(more = TRUE, hilo = NULL)
-            Lprof.tmp <- list(lambdas = Lprofile$lambdas[LCI$hilo], 
-                var.estimates = Lprofile$var.estimates[LCI$hilo])
-            while (LCI.tmp$more) {
-                tmp.sample.vec <- seq(Lprof.tmp$var.estimates[2], 
-                  Lprof.tmp$var.estimates[1], length = 8)
-                tmp.gamma.vec <- tmp.sample.vec[-c(1, 10)]/Vr.est
-                tmp.lambdas <- vapply(tmp.gamma.vec, FUN = constrainFun, 
-                  FUN.VALUE = vector("numeric", length = 1), 
-                  full = full.model, fm2 = full.mod2, comp = component)
-                LCI.tmp <- findBetween(x = chi.val, output = list(lambdas = tmp.lambdas, 
-                  var.estimates = tmp.sample.vec), side = "L", 
-                  threshb = thresh)
-                Lprof.leng <- length(Lprofile$lambdas)
-                Lprofile$lambdas <- c(Lprofile$lambdas, tmp.lambdas)
-                Lprofile$var.estimates <- c(Lprofile$var.estimates, 
-                  tmp.sample.vec[-c(1, 10)])
-                if (LCI.tmp$more) {
-                  Lprof.tmp <- list(lambdas = Lprofile$lambdas[Lprof.leng + 
-                    LCI.tmp$hilo], var.estimates = Lprofile$var.estimates[Lprof.leng + 
-                    LCI.tmp$hilo])
-                }
-                else break
-            }
-            Lower.limit <- LCI.tmp$estimate
-            Lprofile$lambdas <- sort(Lprofile$lambdas, decreasing = FALSE)
-            Lprofile$var.estimates <- sort(Lprofile$var.estimates, 
-                decreasing = FALSE)
-        }
-        else Lower.limit <- LCI$estimate
-    }
-    clambdas <- NULL
-    cvar.estimates <- NULL
-    if (is.null(Lower.limit)) {
-        if (any(pindex <= leng.L)) {
-            lo.seq <- c(1:leng.L)[-pindex[Lpindex]]
-            clambdas <- profile$lambdas[lo.seq]
-            cvar.estimates <- profile$var.estimates[lo.seq]
-        }
-    }
-    else {
-        clambdas <- Lprofile$lambdas
-        cvar.estimates <- Lprofile$var.estimates
-    }
-    if (is.null(Upper.limit)) {
-        if (any(pindex > leng.L)) {
-            hi.seq <- c((leng.L + 1):(leng.L + leng.U))[-pindex[Upindex]]
-            clambdas <- c(clambdas, profile$lambdas[hi.seq])
-            cvar.estimates <- c(cvar.estimates, profile$var.estimates[hi.seq])
-        }
-    }
-    else {
-        clambdas <- c(clambdas, Uprofile$lambdas)
-        cvar.estimates <- c(cvar.estimates, Uprofile$var.estimates)
-    }
-    return(list(lambdas = clambdas, var.estimates = cvar.estimates, 
-        UCL = Upper.limit, LCL = Lower.limit))
-  }
+\examples{
+  \dontrun{
+    library(asreml)
+    ginvA <- asreml.Ainverse(warcolak[, c(1,3,2)])$ginv
+    ginvD <- makeD(warcolak[,1:3])$listDinv
+    warcolak$IDD <- warcolak$ID
+    warcolak.mod <- asreml(trait1 ~ 1, random = ~ped(ID) + giv(IDD), ginverse = list(ID = ginvA, IDD = ginvD), data = warcolak) 
+    summary(warcolak.mod)$varcomp
+    profileA <- proLik(full.model = warcolak.mod, component = "ped(ID)!ped", negative = FALSE, nsample.units = 3, nse = 3)
+    profileA
+    profileD <- proLik(full.model = warcolak.mod, component = "giv(IDD).giv", negative = FALSE, nsample.units = 3, nse = 3)
+
+    x11(w = 6, h = 8)
+    par(mfrow = c(2,1))
+      plot.proLik(profileA) 
+      plot.proLik(profileD)
+   }
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
+

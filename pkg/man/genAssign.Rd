@@ -13,7 +13,12 @@ genAssign(pedigree)
 }
 }
 \details{
-Zero is the base population.  Adapted from kindepth function in kinship.}
+Zero is the base population.  
+
+Adapted from \code{kindepth} function in \code{kinship}
+} 
+
+\seealso{\code{\link[kinship]{kinship}}}
 
 \value{
 A vector of values is returned.  This vector is in the same order as the ID column of the pedigree.

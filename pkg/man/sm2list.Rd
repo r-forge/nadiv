@@ -18,7 +18,12 @@ a list of rownames from the 'A' matrix.
 the columns will be labelled however they are entered in this character vector}
 }
 \details{
-The sparse matrix and three column format must fit CERTAIN assumptions about row/column sorting and lower/upper triangle matrix.}
+The sparse matrix and three column format must fit CERTAIN assumptions about row/column sorting and lower/upper triangle matrix.
+
+Adapted from a function in the \code{MCMCglmm} package}
+
 \value{
 returns the list form of the sparse matrix as a \code{data.frame}}
+
+\seealso{\code{\link[MCMCglmm]{MCMCglmm}}}
 
