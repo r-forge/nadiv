@@ -14,7 +14,7 @@ A pedigree where the columns are ordered ID, Dam, Sire}
 \details{
 Missing parents (e.g., base population) should be denoted by either 'NA' or '0'.
 
-Uses the algorithm of Meuwissen and Luo (1992).  Also, used as a support function to \code{\link{makeD}}.}
+Uses \code{\link{relfactor}} function in package \code{pedigreemm}.  Also, used as a support function to \code{\link{makeD}}.}
 
 \value{Returns A, or the numerator relationship matrix, in sparse and dense matrix form.
 
@@ -22,11 +22,9 @@ Uses the algorithm of Meuwissen and Luo (1992).  Also, used as a support functio
   \item{Adense }{A in dense matrix form}
 }
 
-\references{Meuwissen, T.H.E. & Luo, Z. 1992. Computing inbreeding coefficients in large populations. Genetics, Selection, Evolution 24, 305-313.}
-
 \author{\email{matthewwolak@gmail.com}}
 
-\seealso{\code{\link{makeD}}}
+\seealso{\code{\link{relfactor}}, \code{\link{makeD}}}
 
 \examples{
  makeA(Mrode2)

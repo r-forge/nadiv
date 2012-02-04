@@ -1,4 +1,4 @@
-FindDFC<-function(pedigree)
+findDFC<-function(pedigree)
 {
   numeric.pedigree <- numPed(pedigree)
   ped <- cbind(numeric.pedigree, genAssign(numeric.pedigree), rep(0, dim(numeric.pedigree)[1]))

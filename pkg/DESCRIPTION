@@ -5,7 +5,8 @@ Version: 2.8
 Date: 2012-1-20
 Author: Matthew Wolak
 Maintainer: Matthew Wolak <matthewwolak@gmail.com>
-Depends: Matrix, MCMCglmm
+Depends: Matrix, MCMCglmm, pedigreemm
+Suggests: asreml
 Description: Constructs non-additive genetic relationship matrices from a pedigree.  These and their inverses can be passed to a linear mixed effect model, known as the 'animal model'.
 License: GPL (>=2)
 LazyLoad: yes
