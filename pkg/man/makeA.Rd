@@ -2,7 +2,7 @@
 \alias{makeA}
 \title{Creates the additive genetic relationship matrix
 }
-\description{This returns the additive relationship matrix in both sparse and dense matrix formats.
+\description{This returns the additive relationship matrix in sparse matrix format.
 }
 \usage{
 makeA(pedigree)
@@ -16,11 +16,7 @@ Missing parents (e.g., base population) should be denoted by either 'NA' or '0'.
 
 Uses \code{\link{relfactor}} function in package \code{pedigreemm}.  Also, used as a support function to \code{\link{makeD}}.}
 
-\value{Returns A, or the numerator relationship matrix, in sparse and dense matrix form.
-
-  \item{Asparse }{A in sparse matrix form}
-  \item{Adense }{A in dense matrix form}
-}
+\value{Returns A, or the numerator relationship matrix, in sparse matrix form.}
 
 \author{\email{matthewwolak@gmail.com}}
 

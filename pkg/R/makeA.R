@@ -9,9 +9,8 @@ makeA <- function(pedigree)
   ped <- pedigree(tmp.ped[,1], tmp.ped[,2], tmp.ped[,3])
  
   tL <- relfactor(ped, ped@label)
-  Asparse <- as(crossprod(tL), "dgCMatrix")
-  Adense <- as(Asparse, "matrix")
+  A <- as(crossprod(tL), "dgCMatrix")
   
-return(list(Asparse = Asparse, Adense = Adense))
+A
 }
 
