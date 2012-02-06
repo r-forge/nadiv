@@ -1,0 +1,8 @@
+citHeader("To cite package 'nadiv' in publications, use:")
+citEntry(entry="article", 
+	title="nadiv: an R package to create relatedness matrices for estimating non-additive genetic variances in animal models",
+	author=personList(as.person("Matthew E. Wolak")),	
+	year="Upublished manuscript",
+	textVersion="M.E. Wolak (Unpublished manuscript) nadiv: an R package to create relatedness matrices for estimating non-additive genetic variances in animal models.",
+	journal="TBD")
+

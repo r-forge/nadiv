@@ -23,7 +23,7 @@ unique(numeric.pedigree[, 3])[-1]
   approxD.nonself <- approxD[D.nonself,]
   simD.nonself <- matrix(NA, nrow = dim(approxD.nonself)[1], ncol = N) 
 
-print("starting to make Dsim")
+cat(paste("starting to make Dsim..."))
     start <- 1
     order.ind <- order(uniqp)
     uniqp <- uniqp[order.ind]
@@ -60,15 +60,13 @@ print("starting to make Dsim")
   Dsim@i<-as.integer(Dsim.row[order.index]-1)
   Dsim@p<-as.integer(c(match(1:n, Dsim.col[order.index]), length(order.index)+1)-1)
   Dsim@x<-Dsim.x[order.index]
-print("Dsim made")
+cat(paste("done", "\n"))
   logDetDsim <- determinant(Dsim, logarithm = TRUE)$modulus[1]
 
  
   if(invertD){
-    print("starting to invert Dsim")
     Dsiminv<-solve(Dsim)
     Dsiminv@Dimnames <- list(pedigree[,1], NULL)
-    print("done inverting Dsim")
     listDsiminv<-sm2list(Dsiminv, rownames=pedigree[,1], colnames=c("row", "column", "simDinverse"))
     Dsim <- as(Dsim, "dgCMatrix")
  return(list(A=approxD.tmp$A, D=approxD.tmp$D, logDetD = approxD.tmp$logDet, Dinv=approxD.tmp$Dinv, listDinv=approxD.tmp$listDinv, Dsim=Dsim, logDetDsim = logDetDsim, Dsiminv=Dsiminv, listDsim=listDsim, listDsiminv=listDsiminv))
